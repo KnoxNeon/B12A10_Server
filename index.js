@@ -26,9 +26,14 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const database = client.db('petService')
+    const petServices = database.collection('services')
+
     app.post('/services', async(req, res)=>{
       const data = req.body;
       console.log(data);
+      const result = await petServices.insertOne(data)
+      res.send(result)
     })
 
 
