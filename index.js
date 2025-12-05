@@ -60,6 +60,18 @@ async function run() {
       res.send(result)
     })
 
+    app.put('/update/:id', async (req, res) =>{
+      const data = req.body
+      const id = req.params
+      const query = {_id: new ObjectId(id)}
+      
+      const updateServices = {
+        $set: data
+      }
+      const result = await petServices.updateOne(query, updateServices)
+      res.send(result)
+    })
+
 
 
     // Send a ping to confirm a successful connection
