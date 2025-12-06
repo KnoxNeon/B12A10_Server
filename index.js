@@ -72,6 +72,13 @@ async function run() {
       res.send(result)
     })
 
+    app.delete('/delete/:id', async (req, res) =>{
+      const id = req.params
+      const query = {_id: new ObjectId(id)}
+      const result = await petServices.deleteOne(query)
+      res.send(result)
+    })
+
 
 
     // Send a ping to confirm a successful connection
