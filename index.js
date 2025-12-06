@@ -28,6 +28,7 @@ async function run() {
     // post or save serice to DB
     const database = client.db('petService')
     const petServices = database.collection('services')
+    const orderCollections = database.collection('orders')
 
     app.post('/services', async(req, res)=>{
       const data = req.body;
@@ -82,6 +83,13 @@ async function run() {
       const query = {_id: new ObjectId(id)}
       const result = await petServices.deleteOne(query)
       res.send(result)
+    })
+
+    app.post('/orders', async(req, res)=>{
+      const data = req.body
+      console.log(data)
+      const result = await orderCollections.insertOne(data)
+      res.status(201).send(result)
     })
 
 
