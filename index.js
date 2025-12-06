@@ -92,6 +92,11 @@ async function run() {
       res.status(201).send(result)
     })
 
+    app.get('/orders', async(req, res)=>{
+      const result = await orderCollections.find().toArray()
+      res.status(200).send(result)
+    })
+
 
 
     // Send a ping to confirm a successful connection
